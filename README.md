@@ -5,7 +5,7 @@ STU FEI (MATLAB/Simulink, Python).
 
 Each folder contains:
 - source code (Python or MATLAB/Simulink),
-- a short visual output (plots/screenshots),
+- visual outputs (plots/screenshots),
 - the submitted PDF report (Slovak).
 
 ---
@@ -18,15 +18,21 @@ Each folder contains:
 **Report (SK):** `zad1-Dzvoňár.pdf`
 
 **Summary**
-- Forward kinematics using homogeneous transformations
-- End-effector point computation and 3D visualization
-- Coordinate frame / mechanism visualization and workspace exploration
+- Computes the world-to-platform transform by chaining 4×4 homogeneous
+  transformations (rotations + translations)
+- Calculates the platform contact point P in the world frame using:
+  - `p0 = T0k * pk` (homogeneous coordinates)
+- Visualizes a simplified 3D mechanism and explores workspace reachability
+
+**Key equations**
+```text
+T0k = T01 · T12 · T23 · ... · T(k-1)k
+pk  = [0, 0, 0, 1]^T
+p0  = T0k · pk
+```
 
 **Preview**
-
-| 3D visualization | Example equation / relation |
-|---|---|
-| <img src="assignment_01_aerial_ladder_fk_python/3d_space.jpg" width="420"> | <img src="assignment_01_aerial_ladder_fk_python/P0eq.jpg" width="420"> |
+<img src="assignment_01_aerial_ladder_fk_python/3d_space.jpg" width="650">
 
 **Run**
 ```bash
@@ -45,20 +51,20 @@ Dependencies: `numpy`, `matplotlib`.
 
 **Summary**
 - Dynamic model derived from Lagrange equations and implemented in Simulink
-- Verification of model behavior with motors/control disabled (sanity check)
+- Verification of correct physics with motors/control disabled (sanity check)
 - Joint-level PID position control and response verification
 - Velocity/angle plots exported for validation
 
-**Dynamics model (concept)**
-- M(q) q̈ + C(q, q̇) q̇ + G(q) = τ
-
-<img src="assignment_02_2dof_manipulator_dynamics_simulink/Mqeq.jpg" width="650">
+**Dynamics model**
+```text
+M(q) q̈ + C(q, q̇) q̇ + G(q) = τ
+```
 
 **Verification and control previews**
 
-| Motors/control OFF (sanity check) | Joint velocities during settling | PID setpoint tracking (both joints) |
+| Motors/control OFF (sanity check) | Joint velocities during settling | PID setpoint tracking |
 |---|---|---|
-| <img src="assignment_02_2dof_manipulator_dynamics_simulink/anglesPID.jpg" width="280"> | <img src="assignment_02_2dof_manipulator_dynamics_simulink/Velocity.jpg" width="280"> | <img src="assignment_02_2dof_manipulator_dynamics_simulink/angles_2_joints_set.jpg" width="280"> |
+| <img src="assignment_02_2dof_manipulator_dynamics_simulink/anglesPID.jpg" width="280"> | <img src="assignment_02_2dof_manipulator_dynamics_simulink/Velocity.jpg" width="280"> | <img src="assignment_02_2dof_manipulator_dynamics_simulink/angles_2_joints%20set.jpg" width="280"> |
 
 **Run**
 1. Open MATLAB in the repository root.
@@ -78,17 +84,18 @@ Notes: details (parameters, tests, and reasoning) are in the Slovak PDF report.
 
 **Summary**
 - Differential drive kinematics simulation and visualization
-- Trajectories for robot center and wheels
-- Time plots of left/right wheel velocities and center velocity
-- Includes tasks for generated paths and interactive control mode
+- Trajectories for robot center and both wheels
+- Time plots of wheel velocities and center velocity
+- Tasks: arbitrary velocity input, square trajectory, arc–line–arc curve, and interactive control
 
 **Kinematics**
-- v_T = (v_R + v_L) / 2
-- ω_T = (v_R - v_L) / L
+```text
+vT = (vR + vL) / 2
+wT = (vR - vL) / L
+```
 
-| Kinematics equations | Example trajectory output |
-|---|---|
-| <img src="assignment_03_differential_drive_robot_matlab/equations3.jpg" width="420"> | <img src="assignment_03_differential_drive_robot_matlab/trajectory.jpg" width="420"> |
+**Preview**
+<img src="assignment_03_differential_drive_robot_matlab/trajectory.jpg" width="650">
 
 **Run**
 Open MATLAB in:
