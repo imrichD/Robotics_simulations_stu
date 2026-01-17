@@ -1,27 +1,32 @@
 # Robotics_simulations_stu
 
-Robotics simulations and visualization projects (STU FEI), implemented in
-**Python** and **MATLAB/Simulink**.
+Portfolio repository of robotics simulations and visualization projects for
+STU FEI (MATLAB/Simulink, Python).
 
-This repository contains three course assignments:
-1) forward kinematics with homogeneous transformations,
-2) dynamics + position control of a 2-DOF manipulator,
-3) kinematics + visualization of a differential drive robot.
+Each folder contains:
+- source code (Python or MATLAB/Simulink),
+- a short visual output (plots/screenshots),
+- the submitted PDF report (Slovak).
 
 ---
 
 ## Projects
 
-### 1) Aerial ladder platform — Forward kinematics (Python)
+### Assignment 01 — Aerial ladder platform (Forward kinematics, Python)
 **Folder:** `assignment_01_aerial_ladder_fk_python/`  
-**Report:** `assignment_01_aerial_ladder_fk_python/zad1-Dzvoňár.pdf`  
-**Code:** `assignment_01_aerial_ladder_fk_python/DzvonarRobZadanie1.py`
+**Code:** `DzvonarRobZadanie1.py`  
+**Report (SK):** `zad1-Dzvoňár.pdf`
 
-**What it does**
-- Builds a chain of homogeneous transformations \(T_{0k}\)
-- Computes the end-point position \(p_0 = T_{0k} p_k\)
-- Visualizes the simplified mechanism + coordinate frames
-- Computes/plots workspace envelopes in **XY** and **XZ** planes
+**Summary**
+- Forward kinematics using homogeneous transformations
+- End-effector point computation and 3D visualization
+- Coordinate frame / mechanism visualization and workspace exploration
+
+**Preview**
+
+| 3D visualization | Example equation / relation |
+|---|---|
+| <img src="assignment_01_aerial_ladder_fk_python/3d_space.jpg" width="420"> | <img src="assignment_01_aerial_ladder_fk_python/P0eq.jpg" width="420"> |
 
 **Run**
 ```bash
@@ -32,68 +37,74 @@ Dependencies: `numpy`, `matplotlib`.
 
 ---
 
-### 2) 2-DOF manipulator — Dynamics + PID position control (MATLAB/Simulink)
+### Assignment 02 — 2-DOF manipulator (Dynamics + PID control, MATLAB/Simulink)
 **Folder:** `assignment_02_2dof_manipulator_dynamics_simulink/`  
-**Report:** `assignment_02_2dof_manipulator_dynamics_simulink/zad2-Dzvoňár.pdf`  
-**Simulink model:** `assignment_02_2dof_manipulator_dynamics_simulink/ROB2_schema_Dzvonar.slx`  
-**MATLAB init script:** `assignment_02_2dof_manipulator_dynamics_simulink/Script_zad2_Dzvonar.m`
+**Simulink model:** `ROB2_schema_Dzvonar.slx`  
+**MATLAB script:** `Script_zad2_Dzvonar.m`  
+**Report (SK):** `zad2-Dzvoňár.pdf`
 
-**What it does**
-- Implements a dynamic model derived with Lagrange equations:
-  \[
-  M(q)\ddot{q} + C(q,\dot{q})\dot{q} + G(q) = \tau
-  \]
-- Verifies open-loop behavior (angles, velocities)
-- Designs joint-level **PID** controllers for both axes
-- Experiments with **torque saturation** (actuator limits)
-- Plots joint angles and motor torques
+**Summary**
+- Dynamic model derived from Lagrange equations and implemented in Simulink
+- Verification of model behavior with motors/control disabled (sanity check)
+- Joint-level PID position control and response verification
+- Velocity/angle plots exported for validation
+
+**Dynamics model (concept)**
+- M(q) q̈ + C(q, q̇) q̇ + G(q) = τ
+
+<img src="assignment_02_2dof_manipulator_dynamics_simulink/Mqeq.jpg" width="650">
+
+**Verification and control previews**
+
+| Motors/control OFF (sanity check) | Joint velocities during settling | PID setpoint tracking (both joints) |
+|---|---|---|
+| <img src="assignment_02_2dof_manipulator_dynamics_simulink/anglesPID.jpg" width="280"> | <img src="assignment_02_2dof_manipulator_dynamics_simulink/Velocity.jpg" width="280"> | <img src="assignment_02_2dof_manipulator_dynamics_simulink/angles_2_joints_set.jpg" width="280"> |
 
 **Run**
-1. Open MATLAB in the repo root
-2. Run the init script:
-   - `Script_zad2_Dzvonar.m`
-3. Open the Simulink model:
-   - `ROB2_schema_Dzvonar.slx`
-4. Run the simulation
+1. Open MATLAB in the repository root.
+2. Run the init/script to load parameters to workspace:
+   - `assignment_02_2dof_manipulator_dynamics_simulink/Script_zad2_Dzvonar.m`
+3. Open and run the Simulink model:
+   - `assignment_02_2dof_manipulator_dynamics_simulink/ROB2_schema_Dzvonar.slx`
+
+Notes: details (parameters, tests, and reasoning) are in the Slovak PDF report.
 
 ---
 
-### 3) Differential drive robot — Kinematics + visualization (MATLAB)
+### Assignment 03 — Differential drive robot (Kinematics + visualization, MATLAB)
 **Folder:** `assignment_03_differential_drive_robot_matlab/`  
-**Report:** `assignment_03_differential_drive_robot_matlab/zad3-Dzvonar.pdf`  
-**Code:** `Rob3U1.m`, `Rob3U2.m`, `Rob3U3.m`, `Rob3U4.m`
+**Code:** `Rob3U1.m`, `Rob3U2.m`, `Rob3U3.m`, `Rob3U4.m`  
+**Report (SK):** `zad3-Dzvonar.pdf`
 
-**What it does**
-- Simulates a differential drive robot with:
-  - wheel track \(L = 200\ \text{mm}\)
-  - wheel radius \(r = 50\ \text{mm}\)
-- Uses standard kinematics:
-  \[
-  v_T = \frac{v_R + v_L}{2}, \quad \omega_T = \frac{v_R - v_L}{L}
-  \]
-- Generates and visualizes:
-  - trajectories of robot center + left/right wheel tracks
-  - time plots of wheel/center velocities
-  - square trajectory (user-defined side length)
-  - curve trajectory (arc–line–arc)
-  - interactive control (WASD/arrows) with logged results
+**Summary**
+- Differential drive kinematics simulation and visualization
+- Trajectories for robot center and wheels
+- Time plots of left/right wheel velocities and center velocity
+- Includes tasks for generated paths and interactive control mode
+
+**Kinematics**
+- v_T = (v_R + v_L) / 2
+- ω_T = (v_R - v_L) / L
+
+| Kinematics equations | Example trajectory output |
+|---|---|
+| <img src="assignment_03_differential_drive_robot_matlab/equations3.jpg" width="420"> | <img src="assignment_03_differential_drive_robot_matlab/trajectory.jpg" width="420"> |
 
 **Run**
 Open MATLAB in:
 `assignment_03_differential_drive_robot_matlab/`
 
-Run the scripts (order depends on your implementation):
-- `Rob3U1.m` (task 1)
-- `Rob3U2.m` (task 2)
-- `Rob3U3.m` (task 3)
-- `Rob3U4.m` (task 4)
+Run scripts (task-based):
+- `Rob3U1.m`
+- `Rob3U2.m`
+- `Rob3U3.m`
+- `Rob3U4.m`
 
 ---
 
-## Notes
-- Recommended unit convention: meters, seconds, radians.
-- Generated artifacts (Simulink cache, Python bytecode, etc.) are excluded via
-  `.gitignore` to keep the repository clean.
+## Notes on repository hygiene
+Generated artifacts (Simulink cache files, Python bytecode, etc.) should not be committed.
+This repo uses `.gitignore` to keep only source code + reports + selected figures.
 
 ## Author
-Imrich Dzvoňár (STU FEI), 2025
+Imrich Dzvoňár (2025)
