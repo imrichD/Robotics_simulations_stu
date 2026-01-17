@@ -9,7 +9,25 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
+# OS
+.DS_Store
+Thumbs.db
 
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# MATLAB
+*.asv
+*.m~
+
+# Simulink / MATLAB generated artifacts
+slprj/
+slexec_vm/
+*.slxc
+codegen/
 # Eclipse m2e generated files
 # Eclipse Core
 .project
