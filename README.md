@@ -109,9 +109,5 @@ Run scripts (task-based):
 
 ---
 
-## Notes on repository hygiene
-Generated artifacts (Simulink cache files, Python bytecode, etc.) should not be committed.
-This repo uses `.gitignore` to keep only source code + reports + selected figures.
-
 ## Author
 Imrich Dzvoňár (2025)
